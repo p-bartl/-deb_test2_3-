@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ZooService } from '../zoo.service';
 
 @Component({
   selector: 'app-zoo',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./zoo.component.css']
 })
 export class ZooComponent implements OnInit {
+  animalList: object[] = [];
 
-  constructor() { }
+  constructor(private zooService: ZooService) { }
 
   ngOnInit(): void {
+    this.animalList = this.zooService.getAnimals();
+    
+  }
+
+  onLike(animal: any): void {
+    window.alert(`I like the ${animal.name}`);
   }
 
 }
